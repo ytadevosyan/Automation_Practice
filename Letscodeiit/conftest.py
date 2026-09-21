@@ -9,10 +9,10 @@ from datetime import datetime
 def get_driver():
     try:
         # Run Chrome in headless mode
-        # options = webdriver.ChromeOptions()
-        # options.add_argument('--headless=new')
-        # options.add_argument('--window-size=1920,1080')
-        # driver = webdriver.Chrome(options=options)
+        options = webdriver.ChromeOptions()
+        options.add_argument('--headless=new')
+        options.add_argument('--window-size=1920,1080')
+        driver = webdriver.Chrome(options=options)
 
         # Open a visible browser window and maximize it
         driver = webdriver.Chrome()

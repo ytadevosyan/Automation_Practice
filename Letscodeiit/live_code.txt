@@ -1,4 +1,0 @@
-Alert text - Hello , share this practice page and share your knowledge
-Hidden attribute - display: none;
-Footer text - © 2026 letskodeit
-Sign in validation message - Incorrect login details

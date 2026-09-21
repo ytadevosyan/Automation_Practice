@@ -1,0 +1,35 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.11'
+    displayName: 'Use Python 3.11'
+
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+      pip install pytest pytest-html pytest-azurepipelines allure-pytest
+    displayName: 'Install dependencies'
+
+  - script: |
+      pytest --alluredir=allure-results --html=report.html --self-contained-html
+    displayName: 'Run tests'
+
+  - task: PublishPipelineArtifact@1
+    condition: always()
+    inputs:
+      targetPath: 'allure-results'
+      artifact: 'allure-results'
+    displayName: 'Publish Allure results'
+
+  - task: PublishPipelineArtifact@1
+    condition: always()
+    inputs:
+      targetPath: 'report.html'
+      artifact: 'html-report'
+    displayName: 'Publish HTML report'
